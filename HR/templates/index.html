@@ -1,0 +1,144 @@
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'HR/css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'HR/css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'HR/css/footer.css' %}" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-content">
+        <div class="logo">
+          <img src="{% static 'HR/images/site-logo.png' %}" alt="logo" />
+          <h1 id="site-name">HR Website</h1>
+        </div>
+        <div class="page-links">
+          <ul>
+            <li><a href="">home</a></li>
+            <li><a href="/search">search</a></li>
+            <li><a href="/add">add</a></li>
+            <li><a href="/update">Update</a></li>
+            <li><a href="/submit">submit vacation</a></li>
+            <li><a href="/vacations">vacations list</a></li>
+          </ul>
+        </div>
+        <div class="small-page-links">
+          <span class="symbol">
+            <div class="symbol-part-1"></div>
+            <div class="symbol-part-2"></div>
+            <div class="symbol-part-3"></div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="page">
+      <div class="first-section">
+        <div class="first-section-paragraph">
+          <h2>Welcome to Human Resources Website</h2>
+          <h3>
+            This website can help you to manage human resources of employees
+          </h3>
+        </div>
+        <div class="first-section-img">
+          <img
+            alt="human resources web"
+            src="{% static 'HR/images/Hrweb.jpg' %}"
+          />
+        </div>
+      </div>
+      <div class="second-section">
+        <div class="use-section">
+          <div class="use-section-img">
+            <img
+              src="{% static 'HR/images/user-interface.png' %}"
+              alt=""
+              width="100px"
+              height="100px"
+            />
+          </div>
+          <div class="use-section-text">
+            <h4>project manager</h4>
+            <p>
+              This HR website will provide you with a platform for submitting
+              time-off requests and updating personal information. Add a new
+              employee, update employee data, submit a vacation application for
+              an employee, and make a decision easily on the list of vacation
+              applications. The website also offers a user-friendly interface
+              for managers to track employee attendance, effort, and
+              seriousness. With this HR website, managing employee information
+              and time-off requests has never been easier.
+            </p>
+          </div>
+        </div>
+        <div class="use-section" id="financial-section">
+          <div class="use-section-img">
+            <img
+              id="small"
+              src="{% static 'HR/images/user-interface.png' %}"
+              alt=""
+              width="100px"
+              height="100px"
+            />
+          </div>
+          <div class="use-section-text">
+            <h4>Financial Manager</h4>
+            With this website the managing of employees vacations and there
+            salary has never been easier.
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <div class="logo">
+          <img src="{% static 'HR/images/site-logo.png' %}" alt="logo" />
+          <h1 id="site-name">HR Website</h1>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ol>
+              <h2>who are us ?</h2>
+              <li>abdelrahman mohamed</li>
+              <li>mohamed fathi</li>
+              <li>mostafa elsawy</li>
+              <li>moaz adly</li>
+              <li>mohamed mahmoud</li>
+            </ol>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ul>
+              <h2>what's that ?</h2>
+              <li>
+                this is a humen resources managment website which aiming to make
+                the jop of HRS more eaiser than it ever been
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ul>
+              <h2>this phoject is :</h2>
+              <li>
+                from FCAI students for web technology course, supervises
+                DR.Nemat Al tazi
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="{% static 'HR/js/home.js' %}"></script>
+  </body>
+</html>
