@@ -1,0 +1,98 @@
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'HR/css/submitvacation.css'%}">
+    <link rel="stylesheet" href="{% static 'HR/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'HR/css/footer.css' %}">
+  </head>
+  <body>
+    
+    <div class="header">
+      <div class="header-content">
+        <div class="logo">
+          <img src="{% static 'HR/images/site-logo.png' %}" alt="logo">
+          <h1 id="site-name">HR Website</h1>
+        </div>
+        <div class="page-links">
+          <ul>
+            <li><a href="/homepage">home</a></li>
+            <li><a href="/search">search</a></li>
+            <li><a href="/add">add</a></li>
+            <li><a href="/update">Update</a></li>
+            <li><a href="">submit vacation</a></li>
+            <li><a href="/vacations">vacations list</a></li>
+          </ul>
+        </div>
+        <div class="small-page-links">
+          <span class="symbol">
+            <div class="symbol-part-1"></div>
+            <div class="symbol-part-2"></div>
+            <div class="symbol-part-3"></div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="page">
+      <div class="second-section">
+        <div class="page-title">
+          <img src="{% static 'HR/images/submitvacation-user.png'%}" alt="">
+          <h2 id="page-name">submit a vacation form</h2>
+        </div>
+        <form class="submit-vacation-form" id="vac_add" action = "">
+          <label for="input-id">ID:</label>
+          <input id="input-id" name="id" type="text" autofocus placeholder="Emplyee ID">
+          <label for="input-from-data">From:</label>
+          <input  id="input-from-data" name="from" type="date" placeholder="DD/MM/YYYY">
+          <label for="input-to-data">To:</label>
+          <input id="input-to-data" name ="to" type="date" placeholder="DD/MM/YYYY">
+          <h3>The reason for apply:</h3>
+          <textarea cols="30" rows="10" name="reason" placeholder="enter reason" id="input-reason"></textarea>
+          <input type="submit" name ="submit" id="submit-button">
+        </form>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <div class="logo">
+          <img src="{% static 'HR/images/site-logo.png' %}" alt="logo">
+          <h1 id="site-name">HR Website</h1>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ol>
+              <h2>who are us ?</h2>
+              <li>abdelrahman mohamed</li>
+              <li>mohamed fathi</li>
+              <li>mostafa elsawy</li>
+              <li>moaz adly</li>
+              <li>mohamed mahmoud</li>
+            </ol>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ul>
+              <h2>what's that ?</h2>
+              <li>this is a humen resources managment website which aiming to make the jop of HRS more eaiser than it ever
+                been </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ul>
+              <h2>this phoject is :</h2>
+              <li>from FCAI students for web technology course, supervises DR.Nemat Al tazi </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="{% static 'HR/js/submitvacation.js'%}"></script>
+  </body>
+</html>

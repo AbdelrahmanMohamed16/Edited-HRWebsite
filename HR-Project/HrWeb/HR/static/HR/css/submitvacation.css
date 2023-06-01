@@ -1,0 +1,156 @@
+html {
+    overflow-x: hidden;
+        /* remove overflow-y */
+}
+body {
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+}
+
+.message {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    background-color: #0D2742;
+    border: 1px solid rgba(245, 245, 245, 0.342);
+    border-radius: 15px;
+    height: fit-content;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+  }
+
+  
+  .message .message-container {
+    width: calc(100%-30px);
+    display: flex;
+    border: 1px solid rgba(245, 245, 245, 0.158);
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 20px;
+    background-color: #113459;
+    border-radius: 15px;
+  }
+  
+  .message .message-container p {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  
+  .message .message-container button {
+    text-align: center;
+    width: 200px;
+    padding: 5px;
+    color: white;
+    border: 1px solid rgba(245, 245, 245, 0.664);
+    background-color: #0D2742;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 18px;
+  }
+  .message .message-container button:hover {
+    color: #25b8f7;
+  }
+
+.page {
+    display: flex;
+    flex-direction: column;
+    background-color: #113459;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: capitalize;
+    width: 100%;
+    align-items: center;
+}
+.page .second-section {
+    display: flex;
+    width: fit-content;
+    margin: 0 20% 0 20%;
+    padding-top: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* background: linear-gradient(to bottom , #113459 , #2E8DF2); */
+    background-color: #113459;
+    border-radius: 2%;
+    height: fit-content;
+    flex: 1 1 0;
+}
+
+.page .second-section .page-title {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}   
+
+.page .second-section .page-title img {
+    height: 50px;
+    width: 50px;
+}
+
+.page .second-section .page-title #page-name {
+    display: inline-block;
+    margin: 0;
+    padding-left: 8px;
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: white;
+}
+
+.page .submit-vacation-form {
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    background-color: #38557370;
+    border-radius: 18px;
+    justify-content: center;
+    padding: 10% 5%;
+    border: 1px solid rgba(255, 255, 255, 0.315);
+}
+
+.page .submit-vacation-form h3 {
+    font-size: 18px;
+    width: 30%;
+    margin: 0;
+}
+
+.page .submit-vacation-form label {
+    display: inline-block;
+    width: 30%;
+}
+.page .submit-vacation-form input,textarea {
+    display: inline-block;
+    color: white;
+    background-color: #000000;
+    width: 60%;
+    border-radius: 18px;
+    border: 0;
+    padding: 5px 5px 5px 15px;
+    margin-bottom: 15px;
+}
+.page .submit-vacation-form #submit-button {
+    width: 350px;
+    padding: 7px;
+}
+
+.page .submit-vacation-form #submit-button:hover {
+    background-color: #25b8f7;
+    /* background-color: rgb(55, 131, 55); */
+}

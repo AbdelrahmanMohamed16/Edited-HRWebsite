@@ -1,0 +1,319 @@
+{% comment %}
+<!-- saved from url=(0088)file:///E:/Study/Second%20Year/Second%20Year_SecondSemester/Web/Web_Project/Add_emp.html -->
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'HR/css/add.css' %}" />
+    <link rel="stylesheet" href="{% static 'HR/css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'HR/css/footer.css' %}" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-content">
+        <div class="logo">
+          <img src="{% static 'HR/images/site-logo.png' %}" alt="logo" />
+          <h1 id="site-name">HR Website</h1>
+        </div>
+        <div class="page-links">
+          <ul>
+            <li><a href="/homepage">home</a></li>
+            <li><a href="/search">search</a></li>
+            <li><a href="">add</a></li>
+            <li><a href="/update">Update</a></li>
+            <li><a href="/submit">submit vacation</a></li>
+            <li><a href="/vacations">vacations list</a></li>
+          </ul>
+        </div>
+        <div class="small-page-links">
+          <span class="symbol">
+            <div class="symbol-part-1"></div>
+            <div class="symbol-part-2"></div>
+            <div class="symbol-part-3"></div>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="first-section">
+        <div class="first-section-paragraph">
+          <p>
+            in HR website adding employees to the system hasn't been easier ever
+          </p>
+        </div>
+        <div class="first-section-img">
+          <img src="{% static 'HR/images/add-emp.jpg' %}" />
+        </div>
+      </div>
+      <div class="second-section">
+        <div class="page-title">
+          <img src="{% static 'HR/images/user-icon.png'%}" alt="user-icon" />
+          <p id="page-name">add employee</p>
+        </div>
+        <form class="add-emp-form" action="">
+          <label for="name-input">Name: </label>
+          <input type="text" id="name-input" placeholder="Name" />
+          <label for="email-input">Email: </label>
+          <input type="text" id="email-input" placeholder="Email" />
+          <label for="id-input">ID: </label>
+          <input type="text" id="id-input" placeholder="ID" />
+          <label for="address-input">Address: </label>
+          <input type="text" id="address-input" placeholder="Address" />
+          <label for="phone-input">Phone Number: </label>
+          <input type="text" id="phone-input" placeholder="Phone" />
+          <label for="approved-vacation">Approved Vacations: </label>
+          <input type="text" id="approved-vacation" placeholder="0" />
+          <label for="available-vacation">Available Vacations: </label>
+          <input type="text" id="available-vacation" placeholder="0" />
+          <label for="salary-input">Salary: </label>
+          <input type="text" id="salary-input" placeholder="0" />
+          <label for="dob-input">Date of Birth: </label>
+          <input type="Date" id="dob-input" />
+          <label>Gender:</label>
+          <div class="gender-input">
+            <label id="male-label">
+              <input type="radio" id="male" checked />
+              Male</label
+            >
+            <label id="female-label">
+              <input type="radio" id="female" />
+              Female</label
+            >
+          </div>
+          <label for="martial-status-input">Martial Status: </label>
+          <select class="martial-status-input" id="martial-status-input">
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+          </select>
+          <input type="submit" value="ADD" id="submit" />
+        </form>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <div class="logo">
+          <img src="{% static 'HR/images/site-logo.png' %}" alt="logo" />
+          <h1 id="site-name">HR Website</h1>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ol>
+              <h2>who are us ?</h2>
+              <li>abdelrahman mohamed</li>
+              <li>mohamed fathi</li>
+              <li>mostafa elsawy</li>
+              <li>moaz adly</li>
+              <li>mohamed mahmoud</li>
+            </ol>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ul>
+              <h2>what's that ?</h2>
+              <li>
+                this is a humen resources managment website which aiming to make
+                the jop of HRS more eaiser than it ever been
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ul>
+              <h2>this phoject is :</h2>
+              <li>
+                from FCAI students for web technology course, supervises
+                DR.Nemat Al tazi
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="{% static 'HR/js/add.js'%}"></script>
+  </body>
+</html>
+<!-- Credit-->
+{% endcomment %}
+
+<!-- saved from url=(0088)file:///E:/Study/Second%20Year/Second%20Year_SecondSemester/Web/Web_Project/Add_emp.html -->
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'HR/css/add.css' %}" />
+    <link rel="stylesheet" href="{% static 'HR/css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'HR/css/footer.css' %}" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-content">
+        <div class="logo">
+          <img src="{% static 'HR/images/site-logo.png' %}" alt="logo" />
+          <h1 id="site-name">HR Website</h1>
+        </div>
+        <div class="page-links">
+          <ul>
+            <li><a href="/homepage">home</a></li>
+            <li><a href="/search">search</a></li>
+            <li><a href="">add</a></li>
+            <li><a href="/update">Update</a></li>
+            <li><a href="/submit">submit vacation</a></li>
+            <li><a href="/vacations">vacations list</a></li>
+          </ul>
+        </div>
+        <div class="small-page-links">
+          <span class="symbol">
+            <div class="symbol-part-1"></div>
+            <div class="symbol-part-2"></div>
+            <div class="symbol-part-3"></div>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="first-section">
+        <div class="first-section-paragraph">
+          <p>
+            in HR website adding employees to the system hasn't been easier ever
+          </p>
+        </div>
+        <div class="first-section-img">
+          <img src="{% static 'HR/images/add-emp.jpg' %}" />
+        </div>
+      </div>
+      <div class="second-section">
+        <div class="page-title">
+          <img src="{% static 'HR/images/user-icon.png'%}" alt="user-icon" />
+          <p id="page-name">add employee</p>
+        </div>
+        <form class="add-emp-form" id="emp_add">
+          <label for="name-input">Name: </label>
+          <input type="text" name="name" id="name-input" placeholder="Name" />
+          <label for="email-input">Email: </label>
+          <input
+            type="text"
+            id="email-input"
+            name="email"
+            placeholder="Email"
+          />
+          <label for="id-input">ID: </label>
+          <input type="text" id="id-input" name="id" placeholder="ID" />
+          <label for="address-input">Address: </label>
+          <input
+            type="text"
+            id="address-input"
+            name="address"
+            placeholder="Address"
+          />
+          <label for="phone-input">Phone Number: </label>
+          <input
+            type="text"
+            id="phone-input"
+            name="phone"
+            placeholder="Phone"
+          />
+          <label for="approved-vacation">Approved Vacations: </label>
+          <input
+            type="text"
+            id="approved-vacation"
+            name="approved"
+            placeholder="0"
+          />
+          <label for="available-vacation">Available Vacations: </label>
+          <input
+            type="text"
+            id="available-vacation"
+            name="vacation"
+            placeholder="0"
+          />
+          <label for="salary-input">Salary: </label>
+          <input type="text" id="salary-input" name="salary" placeholder="0" />
+          <label for="dob-input">Date of Birth: </label>
+          <input type="Date" id="dob-input" name="dob" />
+          <label>Gender:</label>
+          <div class="gender-input">
+            <select class="gender-input" id="gender-input" name="gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <label for="martial-status-input">Martial Status: </label>
+          <select
+            class="martial-status-input"
+            id="martial-status-input"
+            name="martial-status"
+          >
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+          </select>
+          <input type="submit" value="ADD" id="submit" />
+        </form>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <div class="logo">
+          <img src="{% static 'HR/images/site-logo.png' %}" alt="logo" />
+          <h1 id="site-name">HR Website</h1>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ol>
+              <h2>who are us ?</h2>
+              <li>abdelrahman mohamed</li>
+              <li>mohamed fathi</li>
+              <li>mostafa elsawy</li>
+              <li>moaz adly</li>
+              <li>mohamed mahmoud</li>
+            </ol>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ul>
+              <h2>what's that ?</h2>
+              <li>
+                this is a humen resources managment website which aiming to make
+                the jop of HRS more eaiser than it ever been
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div class="footer-list">
+            <ul>
+              <h2>this phoject is :</h2>
+              <li>
+                from FCAI students for web technology course, supervises
+                DR.Nemat Al tazi
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="{% static 'HR/js/add.js'%}"></script>
+  </body>
+</html>
+<!-- Credit-->
