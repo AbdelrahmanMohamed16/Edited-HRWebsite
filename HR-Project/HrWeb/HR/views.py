@@ -1,61 +1,3 @@
-# from django.shortcuts import render# redirect
-# from django.http import JsonResponse
-# from HR.models import Employee
-# import json
-
-
-# def addpage(request):
-#     return render(request, "add.html")
-# def homepage(request):
-#     return render(request, "index.html")
-# def list_vacations(request):
-#     return render(request, "list_vacations.html")
-# def search(request):
-#     return render(request, "search.html")
-# def submitvacation(request):
-#     return render(request, "submitvacation.html")
-# def update(request):
-#     return render(request, "update.html")
-
-
-
-# def add_employee(request):
-#     if request.method == 'POST':
-#         # Retrieve  data from request
-#         _name = request.POST.get('name-input')
-#         _email = request.POST.get('email-input')
-#         _id = request.POST.get('id-input')
-#         _address = request.POST.get('address-input')
-#         _phone = request.POST.get('phone-input')
-#         _approved_vacation = request.POST.get('approved-vacation')
-#         _available_vacation = request.POST.get('available-vacation')
-#         _salary = request.POST.get('salary-input')
-#         _dob = request.POST.get('dob-input')
-#         _gender = request.POST.get('gender-input')
-#         _martial_status = request.POST.get('martial-status-input')
-
-#         # Save the employee to the database
-#         employee = Employee(
-#             id =_id,
-#             name = _name,
-#             email=_email,
-#             address=_address,
-#             phone=_phone,
-#             approved_vacation=_approved_vacation,
-#             available_vacation=_available_vacation,
-#             salary=_salary,
-#             dob=_dob,
-#             gender=_gender,
-#             martial_status=_martial_status
-#         )
-
-#         # if Employee.objects.filter(employee_id=_id).exists():
-#         #     return JsonResponse({'message': 'employee already exists'})
-
-#         employee.save()
-#         return JsonResponse({'message': 'employee added successfully'})
-#     return JsonResponse({'message': 'Invalid request'})
-
 from django.shortcuts import render,redirect
 from django.http import JsonResponse,HttpResponse
 from .models import Employee,Vacations
@@ -114,20 +56,11 @@ def add_employee(request):
     return JsonResponse({'message': 'Invalid request'})
     
 
-# def search_employees(request):
-#     if(request.GET):
-#         #word = request.GET.get('param', '') 
-#         employees = Employee.objects.filter(name=param)
-#         return JsonResponse(employees, content_type='application/json')
-#     else:
-#         return JsonResponse({'messsage':'it was not a get request'})
-
-
 def search_employees(request):
     search_keyword = request.GET.get('search', '')
 
     # Perform the search query
-    employees = Employee.objects.filter(name=search_keyword)
+    employees = Employee.objects.filter(name__icontains = search_keyword)
 
     # Prepare the response data
     results = []
@@ -141,10 +74,20 @@ def search_employees(request):
 
 
 def list(request):
-    print(500)
-    lista = Vacations.objects.all() 
-    data = list(lista.values())
-    return JsonResponse(data,safe=False)
+    lista = Vacations.objects.all()
+    Vlist = []
+    for i in lista:
+        employeeName = Employee.objects.get(id=i.vacID).name
+        Vlist.append(
+            {
+                "name": employeeName,
+                "start": i.start,
+                "end": i.end,
+                "id": i.vacID,
+                "reason": i.reason,
+            }
+        )
+    return JsonResponse(Vlist, safe=False)
 
 
 
@@ -164,7 +107,32 @@ def add_vacation(request):
             reason = _rerason
         )
         if not Employee.objects.filter(id=_id).exists():
-            return JsonResponse({'message': ' employee already exists'})
+            return JsonResponse({'message': ' employee does not exists'})
         vac.save()
         return JsonResponse({'message': 'vacation submited successfully'})
     return JsonResponse({'message': 'Invalid request'})
+
+
+
+
+def ACCEPT(request):
+    _id = json.loads(request.body)['id']
+    if Vacations.objects.filter(vacID=_id).exists():
+        vacation = Vacations.objects.filter(vacID=_id)[0]
+        vacation.delete()
+        emp = Employee.objects.get(id=_id)
+        emp.approved_vacation = int(emp.approved_vacation) + 1
+        emp.available_vacation = int(emp.available_vacation) - 1
+        emp.save()
+        return JsonResponse({'message': 'vacation accepted successfully'})
+    
+    return JsonResponse({'message': "invalid request"})
+
+def REJECT(request):
+    _id = json.loads(request.body)['id']
+    if Vacations.objects.filter(vacID=_id).exists():
+        vacation = Vacations.objects.filter(vacID=_id)[0]
+        vacation.delete()
+        return JsonResponse({'message': 'vacation Rejected'})
+    
+    return JsonResponse({'message': "invalid request"})

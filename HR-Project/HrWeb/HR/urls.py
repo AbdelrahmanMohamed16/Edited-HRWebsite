@@ -9,13 +9,17 @@ urlpatterns = [
     path('vacations/', views.list_vacations),
     path('search/', views.search),
     path('submit/', views.submitvacation),
-    path('update', views.update),
+    path('update/', views.update),
     
     path('add_employee/',views.add_employee), 
     path('add_vac/',views.add_vacation),
     path('search-employees/',views.search_employees),
 
-    path('list/' ,views.list )
+    path('list/' ,views.list ),
+
+    path('ACCEPT/' ,views.ACCEPT ),
+    path('REJECT/' ,views.REJECT ),
+
 
 
 

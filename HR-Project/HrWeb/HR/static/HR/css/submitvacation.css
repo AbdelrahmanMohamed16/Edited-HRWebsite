@@ -68,7 +68,7 @@ body {
 .page {
     display: flex;
     flex-direction: column;
-    background-color: #113459;
+    background-color: white;
     color: white;
     font-size: 18px;
     font-weight: bold;
@@ -85,7 +85,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     /* background: linear-gradient(to bottom , #113459 , #2E8DF2); */
-    background-color: #113459;
+    background-color: white;
     border-radius: 2%;
     height: fit-content;
     flex: 1 1 0;
@@ -111,18 +111,18 @@ body {
     font-size: 25px;
     font-weight: bold;
     text-transform: capitalize;
-    color: white;
+    color: black;
 }
 
 .page .submit-vacation-form {
     display: flex;
     flex-wrap: wrap;
     width: fit-content;
-    background-color: #38557370;
-    border-radius: 18px;
+    background-image: linear-gradient(315deg, #113459 0%, #0b1a2e 74%);
+    border-radius: 0 12px 0 0;
     justify-content: center;
     padding: 10% 5%;
-    border: 1px solid rgba(255, 255, 255, 0.315);
+    border: 1px solid rgb(0, 0, 0);
 }
 
 .page .submit-vacation-form h3 {
@@ -138,19 +138,29 @@ body {
 .page .submit-vacation-form input,textarea {
     display: inline-block;
     color: white;
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.733);
     width: 60%;
     border-radius: 18px;
     border: 0;
     padding: 5px 5px 5px 15px;
     margin-bottom: 15px;
 }
+
+.page .submit-vacation-form input:focus,textarea:focus {
+    background-color: #000000;
+  }
+
 .page .submit-vacation-form #submit-button {
+    background-color: black;
+    color: white;
     width: 350px;
     padding: 7px;
+    transition-duration: 0.5s;
+    font-weight: bold;
 }
 
 .page .submit-vacation-form #submit-button:hover {
-    background-color: #25b8f7;
+    background-color: white;
+    color: black;
     /* background-color: rgb(55, 131, 55); */
 }

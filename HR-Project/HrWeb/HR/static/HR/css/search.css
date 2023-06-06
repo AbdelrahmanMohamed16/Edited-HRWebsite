@@ -52,10 +52,11 @@ body {
   }
   .em
   {
-    margin: 100px 0 100px 0;
+    margin: 100px 0 500px 0;
   }
   .emm
   {
+    position: relative;
     width: 80%;
     margin: 70px auto 70px auto;
     text-align: left;
@@ -63,7 +64,28 @@ body {
     display: flex;
     align-items: center;
     text-transform: capitalize;
+    transition-duration: 0.6s;
   }
+
+  .emm:hover{
+    transform: scale(1.1);
+  }
+  
+  .emm:not(:last-child){
+    padding-bottom: 2%;
+    border-bottom: solid 1px rgba(0,0,0);
+  }
+
+  .emm:after {
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 80%;
+    background-color: #113459;
+    right: 0;
+    top: 10%;
+    margin-left: 2%;
+}
   
   .text
   {

@@ -68,16 +68,6 @@
   bottom: -2;
   right: 0%;
 }
-.header .header-content .page-links ul .active a {
-  color: #61c1eb;
-}
-.header .header-content .page-links ul .active::after{
-  width: 100%;
-  height: 2px;
-  background-color: whitesmoke;
-  bottom: -2;
-  right: 0%;
-}
 .header .header-content .page-links a {
   text-transform: capitalize;
   text-decoration: none;
@@ -89,12 +79,14 @@
   width: fit-content;
   display: none;
   align-items: center;
+  z-index: 1;
 }
 .header .header-content .small-page-links .symbol {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   width: fit-content;
+  position: relative;
 } 
 .header .header-content .small-page-links .symbol .symbol-part-1,.symbol-part-2,.symbol-part-3 {
   width: 25px;
@@ -106,22 +98,44 @@
   width: 20px;
 }
 .header .header-content .small-page-links .symbol ul {
+  position: absolute;
   display: flex;
+  text-align: center;
   flex-direction: column;
   justify-content: center;
   margin: 0;
-  padding: 3%;
-  position: absolute;
-  right: 0%;
-  top: 52px;
+  padding: 20px 0;
+  right: 0;
+  top: 45px;
+  min-width: 200px;
   list-style: none;
-  background-color: #113459;
+  background-image: linear-gradient(315deg, #113459 0%, #0b1a2e 74%);
   border-radius: 0 0 12px 12px;
   box-shadow: -1px 1px 3px;
-  z-index: 1;
 }
 .header .header-content .small-page-links .symbol ul li {
   margin-top: 2%;
+  padding: 0 5%;
+}
+.header .header-content .small-page-links .symbol ul li a {
+  position: relative;
+}
+.header .header-content .small-page-links .symbol ul li a::after{
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: white;
+  bottom: -2;
+  right: 50%;
+  transition-duration: 0.5s;
+}
+.header .header-content .small-page-links .symbol ul li a:hover::after{
+  width: 100%;
+  height: 2px;
+  background-color: whitesmoke;
+  bottom: -2;
+  right: 0;
 }
 .header .header-content .small-page-links .symbol ul li a {
   text-decoration: none;
