@@ -14,7 +14,10 @@ class card {
         ID: ${this.id}
       </p>
     </div>
-    <a href="/submit/" onClick="applay(${this.id})" ><button type="button" class="button">apply vacation form</button></a>
+    <div class="buttons">
+      <a href="/submit/" onClick="applay(${this.id})" ><button type="button" class="button">apply vacation form</button></a>
+      <a href="/update/" onClick="update(${this.id})" ><button type="button" class="button">update employee data</button></a>
+    </div>
     `;
   }
   displayCard() {
@@ -26,6 +29,9 @@ class card {
   }
 }
 applay = function (id) {
+  sessionStorage.setItem("id", id);
+}
+update = function (id) {
   sessionStorage.setItem("id", id);
 }
 let searchButton = document.querySelector("#searchbutton");

@@ -118,7 +118,7 @@ body {
   text-transform: capitalize;
   color: black;
 }
-.page .second-section .add-emp-form {
+.page .second-section .update-emp-form {
   display: flex;
   flex-wrap: wrap;
   width: fit-content;
@@ -133,11 +133,11 @@ body {
   border-radius: 0 12px 0 0;
   border: 1px solid rgba(255, 255, 255, 0.315);
 }
-.page .second-section .add-emp-form label {
+.page .second-section .update-emp-form label {
   width: 40%;
   font-size: 16px;
 }
-.page .second-section .add-emp-form input,select {
+.page .second-section .update-emp-form input,select {
   background-color: rgba(0, 0, 0, 0.733);
   border: 0;
   border-radius: 12px;
@@ -147,28 +147,28 @@ body {
   width: 60%;
 }
 
-.page .second-section .add-emp-form input:focus,select:focus {
+.page .second-section .update-emp-form input:focus,select:focus {
   background-color: #000000;
 }
 
-.page .second-section .add-emp-form input[type="radio"] {
+.page .second-section .update-emp-form input[type="radio"] {
   width: fit-content;
   padding: 0;
   margin: 0; 
 }
-.page .second-section .add-emp-form .gender-input {
+.page .second-section .update-emp-form .gender-input {
   display: flex;
   width: 60%;
 }
-.page .second-section .add-emp-form .gender-input #male-label {
+.page .second-section .update-emp-form .gender-input #male-label {
   margin-right: 4%;
 }
-.page .second-section .add-emp-form #male-label, #female-label {
+.page .second-section .update-emp-form #male-label, #female-label {
   width: fit-content;
   margin: 0;
   padding: 0;
 }
-.page .second-section .add-emp-form input[type="submit"] {
+.page .second-section .update-emp-form input[type="submit"] {
   background-color: white;
   border: 0;
   border-radius: 12px;
@@ -181,10 +181,13 @@ body {
   cursor: pointer;
   transition-duration: 0.5s;
 }
-.page .second-section .add-emp-form input[type="submit"]:hover{
+.page .second-section .update-emp-form input[type="submit"]:hover{
   color: white;
   background-color: #000000;
   border: 0;
+}
+input[disabled] {
+  background-image: linear-gradient(90deg, #113459 0%, #0b1a2e 74%);
 }
 /* mobile screen */
 @media (max-width: 767px) {
@@ -197,7 +200,7 @@ body {
   .page .second-section {
     margin: 0 10% 0 10%;
   }
-  .page .second-section .add-emp-form {
+  .page .second-section .update-emp-form {
     width: 100%;
   }
 }
@@ -212,7 +215,7 @@ body {
   .page .second-section {
     margin: 0 10% 0 10%;
   }
-  .page .second-section .add-emp-form {
+  .page .second-section .update-emp-form {
     width: 100%;
   }
 }

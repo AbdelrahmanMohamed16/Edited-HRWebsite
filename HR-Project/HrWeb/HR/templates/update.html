@@ -46,7 +46,9 @@
           <img src="{% static 'HR/images/user-icon.png'%}" alt="user-icon" />
           <p id="page-name">Update employee</p>
         </div>
-        <form class="add-emp-form" action="">
+        <form class="update-emp-form" id="update-form" action="">
+          <label for="id-input">ID: </label>
+          <input type="text" id="id-input" placeholder="ID" / disabled>
           <label for="name-input">Name: </label>
           <input type="text" id="name-input" placeholder="Name" />
           <label for="email-input">Email: </label>

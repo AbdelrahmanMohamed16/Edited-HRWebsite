@@ -42,7 +42,6 @@ body {
   .search-bar button
   {
     border-radius: 12px;
-    width: 3%;
     padding: 10px;
     background: #2196F3;
     color: white;
@@ -86,7 +85,28 @@ body {
     top: 10%;
     margin-left: 2%;
 }
-  
+
+.emm .buttons {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emm .buttons a {
+  margin-right: 8px;
+}
+
+.emm .buttons a button{
+  width: fit-content;
+  margin: auto;
+}
+
+.emm .buttons a:not(:last-child){
+  margin-bottom: 10px;
+}
+
+
   .text
   {
     flex: 1;

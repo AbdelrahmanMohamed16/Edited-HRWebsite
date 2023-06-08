@@ -20,7 +20,8 @@ urlpatterns = [
     path('ACCEPT/' ,views.ACCEPT ),
     path('REJECT/' ,views.REJECT ),
 
-
+    path('update_employee/' ,views.updateEMP),
+    path('EmployeeData/' ,views.getEMPData),
 
 
 ]

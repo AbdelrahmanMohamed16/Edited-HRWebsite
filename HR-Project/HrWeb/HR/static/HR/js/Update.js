@@ -23,29 +23,21 @@ class message {
 let close_message = function (object) {
   object.remove();
 };
-let userNotFound = new message(
-  "user not found, ensure you iserted correct name",
-  "CLOSE",
-  "update-error"
-);
-let formErrorMessage = new message(
-  "invalid data, please insure that you inserted correct data.",
-  "ok",
-  "form-error"
-);
+
+let userID = document.forms[0].querySelector("#id-input");
+userID.value = sessionStorage.getItem("id");
 let userName = document.forms[0].querySelector("#name-input");
 let userEmail = document.forms[0].querySelector("#email-input");
 let userAddress = document.forms[0].querySelector("#address-input");
 let userPhoneNumber = document.forms[0].querySelector("#phone-input");
 let userSalary = document.forms[0].querySelector("#salary-input");
-let userDateofBirth = document.forms[0].querySelector("#dob-input");
 let userMartialStatues = document.forms[0].querySelector(
   "#martial-status-input"
 );
 let userAvailableVacations = document.forms[0].querySelector(
   "#available-vacations-input"
 );
-let lastID = localStorage.getItem("lastID") || 1;
+
 userName.onblur = function () {
   if (
     userName.value != "" &&
@@ -135,62 +127,71 @@ document.forms[0].onsubmit = function (ele) {
     validName === false ||
     validAddress === false ||
     validEmail === false ||
-    validPhone == false ||
-    validSalary == false ||
+    validPhone === false ||
+    validSalary === false ||
     validUserAvailableVacations === false
-  ) {
+  )
     ele.preventDefault();
-    userNotFound.displayMessage();
-  } else if (validName === true) {
-    let found = false;
-    for (let i = 1; i < lastID && found === false; i++) {
-      let name = localStorage.getItem(`userName ${i}`);
-      if (name == userName.value) {
-        if (userEmail.value != "") {
-          localStorage.setItem(`userEmail ${i}`, userEmail.value);
+};
+
+
+let updateForm = document.getElementById("update-form");
+
+document.addEventListener("DOMContentLoaded", function () {
+  empData = new XMLHttpRequest();
+  empData.open("POST", "/EmployeeData/", true);
+  empData.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+  empData.setRequestHeader('Content-Type', 'application/json');
+  empData.onreadystatechange = function () {
+    if (empData.readyState === XMLHttpRequest.DONE) {
+      if (empData.status === 200) {
+        let data = JSON.parse(empData.responseText);
+        userName.value = data.name;
+        userEmail.value = data.email;
+        userAddress.value = data.address;
+        userPhoneNumber.value = data.phone;
+        userSalary.value = data.salary;
+        userMartialStatues.value = data.martialstatus;
+        userAvailableVacations.value = data.availableVacations;
+      }
+    };
+  };
+  empData.send(JSON.stringify({"id": userID.value }));
+  
+  updateForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/update_employee/", true);
+    xhr.setRequestHeader("Content-Type","application/json"); 
+    xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          let m = new message(JSON.parse(xhr.responseText).message,"close", xhr.statusText);
+          m.displayMessage();
+        } else {
+          let m = new message(JSON.parse(xhr.responseText).message,"close", xhr.statusText);
+          m.displayMessage();
         }
-        if (userAddress.value != "") {
-          localStorage.setItem(`userAddress ${i}`, userAddress.value);
+      }
+    };
+    xhr.send(
+      JSON.stringify({"id":userID.value, "name": userName.value, "email" : userEmail.value, "address" : userAddress.value, "phone" : userPhoneNumber.value, "salary" : userSalary.value, "maritalStatus" : userMartialStatues.value, "availableVacations" : userAvailableVacations.value}
+      ));
+    });
+  });
+
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
         }
-        if (userPhoneNumber.value != "") {
-          localStorage.setItem(`userPhoneNumber ${i}`, userPhoneNumber.value);
-        }
-        if (userSalary.value != "") {
-          localStorage.setItem(`userSalary ${i}`, userSalary.value);
-        }
-        if (userMartialStatues.value != "") {
-          localStorage.setItem(
-            `userMartialStatues ${i}`,
-            userMartialStatues.value
-          );
-        }
-        if (userAvailableVacations.value != "") {
-          localStorage.setItem(
-            `userAvailableVacations ${i}`,
-            userAvailableVacations.value
-          );
-        }
-        found = true;
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "Update_employee/", true);
-        xhr.setRequestHeader("Content-Type"); //////////////
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              console.log("Update successful");
-            } else {
-              console.error("Update failed", xhr.statusText);
-            }
-          }
-        };
-        xhr.send(
-          `name=${userName.value}&email=${userEmail.value}&address=${userAddress.value}&phone=${userPhoneNumber.value}&salary=${userSalary.value}&maritalStatus=${userMartialStatues.value}&availableVacations=${userAvailableVacations.value}`
-        );
       }
     }
-    if (found === false) {
-      ele.preventDefault();
-      userNotFound.displayMessage();
-    }
+    return cookieValue;
   }
-};

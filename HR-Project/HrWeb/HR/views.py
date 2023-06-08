@@ -95,8 +95,8 @@ def list(request):
 
 def add_vacation(request):
     if (request.POST):
-        _start = request.POST.get('to')
-        _end = request.POST.get('from')
+        _start = request.POST.get('from')
+        _end = request.POST.get('to')
         _id = request.POST.get('id')
         _rerason = request.POST.get('reason')
         # Save the employee to the database
@@ -136,3 +136,44 @@ def REJECT(request):
         return JsonResponse({'message': 'vacation Rejected'})
     
     return JsonResponse({'message': "invalid request"})
+
+def getEMPData(request):
+    _id = json.loads(request.body)['id']
+    if Employee.objects.filter(id=_id).exists():
+        emp = Employee.objects.get(id=_id)
+        return JsonResponse({
+            'name': emp.name,
+            'email': emp.email,
+            'address': emp.address,
+            'phone': emp.phone,
+            'salary': emp.salary,
+            'martialstatus': emp.martial_status,
+            'availableVacations': emp.available_vacation,
+        })
+    else:
+        return JsonResponse({'message': 'employee does not exists'})
+
+
+def updateEMP(request):
+    _id = json.loads(request.body)['id']
+    _name = json.loads(request.body)['name']
+    _email = json.loads(request.body)['email']
+    _address = json.loads(request.body)['address']
+    _phone = json.loads(request.body)['phone']
+    _salary = json.loads(request.body)['salary']
+    _martialstatus = json.loads(request.body)['maritalStatus']
+    _availableVacations = json.loads(request.body)['availableVacations']
+    if Employee.objects.filter(id=_id).exists():
+        emp = Employee.objects.get(id=_id)
+        emp.name = _name
+        emp.email = _email
+        emp.address = _address
+        emp.phone = _phone
+        emp.salary = _salary
+        emp.martial_status = _martialstatus
+        emp.available_vacation = _availableVacations
+        emp.save()
+        return JsonResponse({'message': 'employee updated successfully'})
+    else:
+        return JsonResponse({'message': 'employee does not exists'})
+

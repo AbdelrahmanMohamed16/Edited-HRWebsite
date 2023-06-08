@@ -4,7 +4,7 @@ class card {
     id = "",
     R = "",
     from = vacation.start(),
-    to = vacation.start()
+    to = vacation.end()
   ) {
     this.name = n;
     this.id = id;
@@ -24,7 +24,7 @@ class card {
         </div>
         <div class="sub-flex-row">
           <label for="to"> To </label>
-          <input type="vacation.start" name="begin"
+          <input type="vacation.end" name="end"
           placeholder="dd-mm-yyyy" value="${this.to}"
           min="1997-01-01" max="2030-12-31" disabled class="from">
         </div>
@@ -100,7 +100,6 @@ closeRejectedObject = function (e, id) {
       }
     }
   };
-
   req.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
   req.setRequestHeader('Content-Type', 'application/json');
   req.send(JSON.stringify({"id": id }));
