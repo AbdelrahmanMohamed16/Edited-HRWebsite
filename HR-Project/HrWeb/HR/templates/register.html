@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{%static 'HR/css/register.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <img src="{% static 'HR/images/site-logo.png' %}" alt="logo" />
+        <div class="sub-container">
+            <form action="" class="register-form">
+                <h1>register</h1>
+                <div class="id">
+                    <label for="id">ID:</label>
+                    <input class="form-input" type="text" name="id" id="id" placeholder="ID">
+                    <span class="form-error">error message</span>
+                </div>
+                <div class="username">
+                    <label for="username">username:</label>
+                    <input class="form-input" type="text" name="username" id="username" placeholder="Username">
+                    <span class="form-error">error message</span>
+                </div>
+                <div class="name">
+                    <label for="name">name:</label>
+                    <input class="form-input" type="text" name="name" id="name" placeholder="name">
+                    <span class="form-error">error message</span>
+                </div>
+                <div class="password">
+                    <label for="password">password:</label>
+                    <input class="form-input" type="password" name="password" id="password" placeholder="Password">
+                    <span class="form-error">error message</span>
+                </div>
+                <div class="email">
+                    <label for="email">email:</label>
+                    <input class="form-input" type="text" name="email" id="email" placeholder="Email">
+                    <span class="form-error">error message</span>
+                </div>
+                <div class="phone">
+                    <label for="phone">phone:</label>
+                    <input class="form-input" type="text" name="phone" id="phone" placeholder="Phone Number">
+                    <span class="form-error">error message</span>
+                </div>
+                <input type="submit" value="Register" id="register-botton">
+                <p>already have account? <a href="/loginpage/">login</a></p>
+            </form>
+        </div>
+    </div>
+    <script src="{%static 'HR/js/register.js'%}"></script>
+</body>
+</html>

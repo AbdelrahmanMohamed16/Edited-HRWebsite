@@ -1,12 +1,16 @@
 from django.shortcuts import render,redirect
 from django.http import JsonResponse,HttpResponse
-from .models import Employee,Vacations
+from .models import Employee,Vacations,Admin
 import json
 
 def addpage(request):
     return render(request, "add.html")
 def homepage(request):
     return render(request, "index.html")
+def loginpage(request):
+    return render(request, "login.html")
+def registerpage(request):
+    return render(request, "register.html")
 def list_vacations(request):
     return render(request, "list_vacations.html")
 def search(request):
@@ -176,4 +180,33 @@ def updateEMP(request):
         return JsonResponse({'message': 'employee updated successfully'})
     else:
         return JsonResponse({'message': 'employee does not exists'})
+    
+def login(request):
+    _username = json.loads(request.body)['username']
+    _password = json.loads(request.body)['password']
+    if Admin.objects.filter(username=_username).exists():
+        Acc = Admin.objects.get(username=_username)
+        if Acc.password == _password:
+            return JsonResponse({'message': 'Success'})
+        else:
+            return JsonResponse({'message': 'wrong password'})
+    else:
+        return JsonResponse({'message': 'employee does not exists'})
+
+def register(request):
+    _id = json.loads(request.body)['id']
+    _username = json.loads(request.body)['username']
+    _name = json.loads(request.body)['name']
+    _password = json.loads(request.body)['password']
+    _email = json.loads(request.body)['email']
+    _phone = json.loads(request.body)['phone']
+    if Admin.objects.filter(id=_id).exists():
+        return JsonResponse({'message': ' id already exists'})
+    elif Admin.objects.filter(username=_username).exists():
+        return JsonResponse({'message': ' username already exists'})
+    else:
+        x = Admin(id=_id, username=_username, name = _name, password=_password, email=_email, phone=_phone);
+        x.save()
+        return JsonResponse({'message': 'Success'})
+    
 

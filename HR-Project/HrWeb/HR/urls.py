@@ -3,7 +3,9 @@ from  HR import views
 
 
 urlpatterns = [
-    path('', views.homepage),
+    path('', views.loginpage),
+    path('loginpage/', views.loginpage),
+    path('registerpage/', views.registerpage),
     path('homepage/', views.homepage),
     path('add/', views.addpage),
     path('vacations/', views.list_vacations),
@@ -22,6 +24,9 @@ urlpatterns = [
 
     path('update_employee/' ,views.updateEMP),
     path('EmployeeData/' ,views.getEMPData),
+    
+    path('login/' ,views.login),
+    path('register/' ,views.register),
 
 
 ]

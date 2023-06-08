@@ -3,6 +3,7 @@ class Employee(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     id = models.CharField(max_length=20,primary_key = 'True')
+    adminID = models.CharField(max_length=20)
     address = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
     approved_vacation = models.IntegerField()
@@ -22,3 +23,13 @@ class Vacations(models.Model):
     reason = models.TextField(max_length=255)
     def __str__(self):
         return self.vacID
+    
+class Admin(models.Model):
+    username = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    password = models.CharField(max_length=20)
+    email = models.EmailField()
+    id = models.CharField(max_length=20,primary_key = 'True')
+    phone = models.CharField(max_length=20)
+    def __str__(self):
+        return self.name

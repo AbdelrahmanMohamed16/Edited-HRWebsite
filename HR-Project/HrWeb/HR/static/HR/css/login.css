@@ -1,0 +1,218 @@
+html {
+    overflow-x: hidden;
+    /* remove overflow-y */
+}
+body {
+    font-family: 'Kanit', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    background-color: #113459;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    /* font-size: 1.1rem; */
+    /* font-weight: bold; */
+}
+
+.main-container img{
+    width: 25%;
+    max-width: 25%;
+}
+
+.main-container .sub-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-image: linear-gradient(315deg, #113459 0%, #0b1a2e 74%);
+    text-align: center;
+}
+
+.main-container .sub-container form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.main-container .sub-container form input:not(#remember) {
+    width: 50%;
+    height: 2rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-radius: 5px;
+    padding-left: 1rem;
+    font-size: 1rem;
+}
+
+.main-container .sub-container form h1 {
+    border-bottom: 3px solid white;
+}
+
+.main-container .sub-container form input[type="submit"] {
+    width: 50%;
+    height: 2rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    padding-left: 1rem;
+    font-size: 1rem;
+    background-color: rgb(10, 28, 133);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 0.8s;
+}
+
+.main-container .sub-container form input[type="submit"]:hover {
+    background-color: rgb(0, 38, 255);
+}
+
+.main-container .sub-container div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.name label, .password label {
+    width: 30%;
+    text-align: right;
+    margin-right: 1rem;
+}
+
+a {
+    color: rgb(0, 38, 255); 
+    text-decoration: none;
+    transition-duration: 0.8s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.message {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    background-color: #0D2742;
+    border: 1px solid rgba(245, 245, 245, 0.342);
+    border-radius: 15px;
+    height: fit-content;
+    animation-name: message-movement;
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards;
+}
+@keyframes message-movement {
+    from {
+        top:0;
+        opacity: 0.7;
+    }
+    to {
+        opacity: 1;
+        top: calc(50% - 100px);
+    }
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.message {
+    position: absolute;
+    margin: auto auto;
+}
+
+.message .message-container {
+    width: calc(100%-30px);
+    display: flex;
+    border: 1px solid rgba(245, 245, 245, 0.158);
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 20px;
+    background-color: #113459;
+    border-radius: 15px;
+}
+
+.message .message-container p {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.message .message-container button {
+    text-align: center;
+    width: 200px;
+    padding: 5px;
+    color: white;
+    border: 1px solid rgba(245, 245, 245, 0.664);
+    background-color: #0D2742;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 18px;
+}
+.message .message-container button:hover {
+    color: #25b8f7;
+}
+
+/* mobile screen */
+@media (max-width: 767px) {
+    .sub-container {
+        width: 60%;
+    }
+
+    .main-container {
+        font-size: 14px;
+    }
+}
+  /* small screen  */
+@media (min-width: 767px) and (max-width: 921px) {
+    .sub-container {
+        width: 60%;
+    }
+
+    .main-container {
+        font-size: 1.5rem;
+    }
+}
+  /* medium screen  */
+@media (min-width: 922px) and (max-width: 1199px) {
+    .sub-container {
+        width: 50%;
+    }
+
+    .main-container {
+        font-size: 1.5rem;
+    }
+}
+  /* large screen  */
+@media (min-width: 1200px) {
+    .sub-container {
+        width: 50%;
+    }
+
+    .main-container {
+        font-size: 1.5rem;
+    }
+}
