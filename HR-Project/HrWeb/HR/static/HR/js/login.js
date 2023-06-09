@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             localStorage.setItem('username', usernameInput.value);
                             localStorage.setItem('password', passwordInput.value);
                         }
+                        sessionStorage.setItem('admin-username', usernameInput.value);
                         window.location.href = "/homepage";
                     }
                     else {

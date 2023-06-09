@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (response == "Success"){
                         let Message = new message("You have successfully registered!", "Close", "Register Message");
                         Message.displayMessage();
+                        form.reset();
                         idinput.value = "";
                         usernameinput.value = "";
                         nameinput.value = "";

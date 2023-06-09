@@ -123,7 +123,9 @@ function getCookie(name) {
 document.addEventListener("DOMContentLoaded", function () {
   var b = document.getElementById("button");
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/list/", true);
+  xhr.open("Post", "/list/", true);
+  xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+  xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
@@ -145,5 +147,20 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   };
-  xhr.send();
+  xhr.send(JSON.stringify({"admin-username" : sessionStorage.getItem("admin-username")}));
 });
+
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}

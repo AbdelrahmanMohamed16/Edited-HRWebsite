@@ -32,7 +32,7 @@ applay = function (id) {
   sessionStorage.setItem("id", id);
 }
 update = function (id) {
-  sessionStorage.setItem("id", id);
+  sessionStorage.setItem("updateID", id);
 }
 let searchButton = document.querySelector("#searchbutton");
 let searchinput = document.querySelector("#searchinput");
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var xhr = new XMLHttpRequest();
       xhr.open(
         "GET",
-        "/search-employees/?search=" + encodeURIComponent(searchKeyword),
+        "/search-employees/?search=" + encodeURIComponent(searchKeyword) + "&Admin=" + encodeURIComponent(sessionStorage.getItem("admin-username")),
         true
       );
 

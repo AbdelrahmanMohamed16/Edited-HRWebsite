@@ -25,7 +25,7 @@ let close_message = function (object) {
 };
 
 let userID = document.forms[0].querySelector("#id-input");
-userID.value = sessionStorage.getItem("id");
+userID.value = sessionStorage.getItem("updateID");
 let userName = document.forms[0].querySelector("#name-input");
 let userEmail = document.forms[0].querySelector("#email-input");
 let userAddress = document.forms[0].querySelector("#address-input");
@@ -138,6 +138,9 @@ document.forms[0].onsubmit = function (ele) {
 let updateForm = document.getElementById("update-form");
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (userID.value == "") {
+    return;
+  }
   empData = new XMLHttpRequest();
   empData.open("POST", "/EmployeeData/", true);
   empData.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
@@ -156,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
   };
-  empData.send(JSON.stringify({"id": userID.value }));
+  empData.send(JSON.stringify({"id": userID.value, "admin-username" : sessionStorage.getItem("admin-username")}));
   
   updateForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -169,6 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (xhr.status === 200) {
           let m = new message(JSON.parse(xhr.responseText).message,"close", xhr.statusText);
           m.displayMessage();
+          sessionStorage.removeItem("updateID");
         } else {
           let m = new message(JSON.parse(xhr.responseText).message,"close", xhr.statusText);
           m.displayMessage();
@@ -176,22 +180,23 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
     xhr.send(
-      JSON.stringify({"id":userID.value, "name": userName.value, "email" : userEmail.value, "address" : userAddress.value, "phone" : userPhoneNumber.value, "salary" : userSalary.value, "maritalStatus" : userMartialStatues.value, "availableVacations" : userAvailableVacations.value}
+      JSON.stringify({"id":userID.value, "name": userName.value, "email" : userEmail.value, "address" : userAddress.value, "phone" : userPhoneNumber.value,
+        "salary" : userSalary.value, "maritalStatus" : userMartialStatues.value, "availableVacations" : userAvailableVacations.value, "admin-username" : sessionStorage.getItem("admin-username")}
       ));
     });
   });
 
-  function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-      var cookies = document.cookie.split(";");
-      for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i].trim();
-        if (cookie.substring(0, name.length + 1) === name + "=") {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
       }
     }
-    return cookieValue;
   }
+  return cookieValue;
+}

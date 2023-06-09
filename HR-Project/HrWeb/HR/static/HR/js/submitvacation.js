@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       xhttp.open("POST", "/add_vac/", true);
       xhttp.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
-      xhttp.send(formData);
+      xhttp.send(JSON.stringify({"id" : userID.value, "reason" : vacationReason.value, "from" : vacationFromDate.value, "to" : vacationToDate.value}));
     }
   });
 });

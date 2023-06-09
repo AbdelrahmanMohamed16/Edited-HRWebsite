@@ -26,46 +26,46 @@ def add(request):
     return render(request, "add.html")
     
 def add_employee(request):
-    if (request.POST):
-        _name = request.POST.get('name')
-        _email = request.POST.get('email')
-        _id = request.POST.get('id')
-        _address = request.POST.get('address')
-        _phone = request.POST.get('phone')
-        _approved_vacation = request.POST.get('approved')
-        _available_vacation = request.POST.get('vacation')
-        _salary = request.POST.get('salary')
-        _dob = request.POST.get('dob')
-        _gender = request.POST.get('gender')
-        _martial_status = request.POST.get('martial-status')
-        # Save the employee to the database
-        employee = Employee(
-            name=_name,
-            email=_email,
-            id =_id,
-            address=_address,
-            phone=_phone,
-            approved_vacation=_approved_vacation,
-            available_vacation=_available_vacation,
-            salary=_salary,
-            dob=_dob,
-            gender=_gender,
-            martial_status=_martial_status
-        )
-        if Employee.objects.filter(id=_id).exists():
-            return JsonResponse({'message': ' employee already exists'})
-
-        employee.save()
-        return JsonResponse({'message': 'employee added successfully'})
-    return JsonResponse({'message': 'Invalid request'})
+    _name = json.loads(request.body)['name']
+    _email = json.loads(request.body)['email']
+    _id = json.loads(request.body)['id']
+    _address = json.loads(request.body)['address']
+    _phone = json.loads(request.body)['phone']
+    _approved_vacation = json.loads(request.body)['approved_vacations']
+    _available_vacation = json.loads(request.body)['available_vacations']
+    _salary = json.loads(request.body)['salary']
+    _dob = json.loads(request.body)['dob']
+    _gender = json.loads(request.body)['gender']
+    _martial_status = json.loads(request.body)['martial-status']
+    _admin_username = json.loads(request.body)['admin-username']
+    _adminID = Admin.objects.get(username=_admin_username).id
+    # Save the employee to the database
+    if Employee.objects.filter(id=_id).exists():
+        return JsonResponse({'message': ' employee already exists'})
+    employee = Employee(
+        name=_name,
+        email=_email,
+        id =_id,
+        adminID = _adminID,
+        address=_address,
+        phone=_phone,
+        approved_vacation=_approved_vacation,
+        available_vacation=_available_vacation,
+        salary=_salary,
+        dob=_dob,
+        gender=_gender,
+        martial_status=_martial_status
+    )
+    employee.save()
+    return JsonResponse({'message': 'employee added successfully'})
     
 
 def search_employees(request):
     search_keyword = request.GET.get('search', '')
+    admin = request.GET.get('Admin', '')
 
     # Perform the search query
-    employees = Employee.objects.filter(name__icontains = search_keyword)
-
+    employees = Employee.objects.filter(name__icontains = search_keyword, adminID = Admin.objects.get(username=admin).id)
     # Prepare the response data
     results = []
     for employee in employees:
@@ -78,10 +78,14 @@ def search_employees(request):
 
 
 def list(request):
-    lista = Vacations.objects.all()
+    _admin_username = json.loads(request.body)['admin-username']
+    _adminID = Admin.objects.get(username=_admin_username).id
+    lista = Vacations.objects.filter()
     Vlist = []
     for i in lista:
         employeeName = Employee.objects.get(id=i.vacID).name
+        if (Employee.objects.get(id=i.vacID).adminID != _adminID):
+            continue
         Vlist.append(
             {
                 "name": employeeName,
@@ -98,23 +102,24 @@ def list(request):
 
 
 def add_vacation(request):
-    if (request.POST):
-        _start = request.POST.get('from')
-        _end = request.POST.get('to')
-        _id = request.POST.get('id')
-        _rerason = request.POST.get('reason')
-        # Save the employee to the database
-        vac = Vacations(
-            start  =  _start,
-            end    =  _end ,
-            vacID     =  _id ,
-            reason = _rerason
-        )
-        if not Employee.objects.filter(id=_id).exists():
-            return JsonResponse({'message': ' employee does not exists'})
-        vac.save()
-        return JsonResponse({'message': 'vacation submited successfully'})
-    return JsonResponse({'message': 'Invalid request'})
+    _start = json.loads(request.body)['from']
+    _end = json.loads(request.body)['to']
+    _id = json.loads(request.body)['id']
+    _rerason = json.loads(request.body)['reason']
+    # Save the employee to the database
+    vac = Vacations(
+        start  =  _start,
+        end    =  _end ,
+        vacID     =  _id ,
+        reason = _rerason
+    )
+    if not Employee.objects.filter(id=_id).exists():
+        return JsonResponse({'message': ' employee does not exists'})
+    emp = Employee.objects.get(id=_id)
+    if (emp.available_vacation <= 0):
+        return JsonResponse({'message': 'no available vacations'})
+    vac.save()
+    return JsonResponse({'message': 'vacation submited successfully'})
 
 
 
@@ -143,8 +148,10 @@ def REJECT(request):
 
 def getEMPData(request):
     _id = json.loads(request.body)['id']
-    if Employee.objects.filter(id=_id).exists():
-        emp = Employee.objects.get(id=_id)
+    _admin_username = json.loads(request.body)['admin-username']
+    _adminID = Admin.objects.get(username=_admin_username).id
+    if Employee.objects.filter(id=_id , adminID=_adminID).exists():
+        emp = Employee.objects.get(id=_id, adminID=_adminID)
         return JsonResponse({
             'name': emp.name,
             'email': emp.email,
@@ -167,8 +174,10 @@ def updateEMP(request):
     _salary = json.loads(request.body)['salary']
     _martialstatus = json.loads(request.body)['maritalStatus']
     _availableVacations = json.loads(request.body)['availableVacations']
-    if Employee.objects.filter(id=_id).exists():
-        emp = Employee.objects.get(id=_id)
+    _admin_username = json.loads(request.body)['admin-username']
+    _adminID = Admin.objects.get(username=_admin_username).id
+    if Employee.objects.filter(id=_id , adminID=_adminID).exists():
+        emp = Employee.objects.get(id=_id, adminID=_adminID)
         emp.name = _name
         emp.email = _email
         emp.address = _address

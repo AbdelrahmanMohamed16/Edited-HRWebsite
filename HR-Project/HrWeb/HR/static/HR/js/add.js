@@ -40,7 +40,7 @@ let userAvailableVacations = document.forms[0].querySelector(
 );
 let userSalary = document.forms[0].querySelector("#salary-input");
 let userDateofBirth = document.forms[0].querySelector("#dob-input");
-let userGender = document.forms[0].querySelector('input[name="os"]:checked');
+let userGender = document.forms[0].querySelector('#gender-input');
 let userMartialStatues = document.forms[0].querySelector(
   "#martial-status-input"
 );
@@ -150,7 +150,7 @@ document.forms[0].onsubmit = function (ele) {
   if (
     userApprovedVacations.value != "" &&
     userApprovedVacations.value.match("[0-9]+") &&
-    userApprovedVacations.value > 0
+    userApprovedVacations.value >= 0
   ) {
     validApprovedVacations = true;
   } else {
@@ -208,7 +208,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
       xhttp.open("POST", "/add_employee/", true);
       xhttp.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
-      xhttp.send(formData);
+
+      xhttp.send(JSON.stringify({"name": userName.value, "email": userEmail.value, "id": userID.value, "address": userAddress.value, "phone": userPhoneNumber.value, "approved_vacations": userApprovedVacations.value,
+                                  "available_vacations": userAvailableVacations.value, "salary": userSalary.value, "dob": userDateofBirth.value, "gender": userGender.value, "martial-status" : userMartialStatues.value, "admin-username": sessionStorage.getItem("admin-username")}));
+      // formData+{"admin-username":sessionStorage.getItem("admin-username")}
+      // let userName = document.forms[0].querySelector("#name-input");
+      // let userEmail = document.forms[0].querySelector("#email-input");
+      // let userID = document.forms[0].querySelector("#id-input");
+      // let userAddress = document.forms[0].querySelector("#address-input");
+      // let userPhoneNumber = document.forms[0].querySelector("#phone-input");
+      // let userApprovedVacations =
+      //   document.forms[0].querySelector("#approved-vacation");
+      // let userAvailableVacations = document.forms[0].querySelector(
+      //   "#available-vacation"
+      // );
+      // let userSalary = document.forms[0].querySelector("#salary-input");
+      // let userDateofBirth = document.forms[0].querySelector("#dob-input");
+      // let userGender = document.forms[0].querySelector('input[name="os"]:checked');
+      // let userMartialStatues = document.forms[0].querySelector(
+      //   "#martial-status-input"
+      // );
     }
   });
 });
